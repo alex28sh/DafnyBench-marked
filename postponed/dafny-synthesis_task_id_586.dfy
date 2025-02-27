@@ -1,3 +1,4 @@
+
 method SplitAndAppend(l: seq<int>, n: int) returns (r: seq<int>)
   // pre-conditions-start
   requires n >= 0 && n < |l|

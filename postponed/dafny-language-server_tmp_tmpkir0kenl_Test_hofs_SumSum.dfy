@@ -1,3 +1,4 @@
+
 function Sum(n: nat, f: int -> int): int
 {
   if n == 0 then

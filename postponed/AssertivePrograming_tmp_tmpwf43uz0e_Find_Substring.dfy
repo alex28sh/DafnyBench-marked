@@ -1,4 +1,5 @@
-function ExistsSubstring(str1: string, str2: string): bool
+
+ghost predicate ExistsSubstring(str1: string, str2: string)
 {
   exists offset :: 
     0 <= offset <= |str1| &&
@@ -6,7 +7,7 @@ function ExistsSubstring(str1: string, str2: string): bool
 }
 // pure-end
 
-function Post(str1: string, str2: string, found: bool, i: nat): bool
+ghost predicate Post(str1: string, str2: string, found: bool, i: nat)
 {
   (found <==> ExistsSubstring(str1, str2)) &&
   (found ==>
@@ -347,7 +348,7 @@ method Main()
 // impl-end
 }
 
-function Outter_Inv_correctness(str1: string, str2: string, found: bool, i: nat): bool
+ghost predicate Outter_Inv_correctness(str1: string, str2: string, found: bool, i: nat)
 {
   (found ==>
     i + |str2| <= |str1| &&
@@ -361,7 +362,7 @@ function Outter_Inv_correctness(str1: string, str2: string, found: bool, i: nat)
 }
 // pure-end
 
-function Inner_Inv_correctness(str1: string, str2: string, i: nat, j: int, found: bool): bool
+ghost predicate Inner_Inv_correctness(str1: string, str2: string, i: nat, j: int, found: bool)
 {
   0 <= j <= i &&
   j < |str2| &&
@@ -374,7 +375,7 @@ function Inner_Inv_correctness(str1: string, str2: string, i: nat, j: int, found
 }
 // pure-end
 
-function Inner_Inv_Termination(str1: string, str2: string, i: nat, j: int, old_i: nat, old_j: nat): bool
+ghost predicate Inner_Inv_Termination(str1: string, str2: string, i: nat, j: int, old_i: nat, old_j: nat)
 {
   old_j - j == old_i - i
 }

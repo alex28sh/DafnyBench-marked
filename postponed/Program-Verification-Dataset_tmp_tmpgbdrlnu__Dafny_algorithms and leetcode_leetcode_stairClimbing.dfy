@@ -1,3 +1,4 @@
+
 function stepSum(xs: seq<Steps>): nat
 {
   if xs == [] then
@@ -7,13 +8,13 @@ function stepSum(xs: seq<Steps>): nat
 }
 // pure-end
 
-function stepEndsAt(xs: seq<Steps>, n: nat): bool
+ghost predicate stepEndsAt(xs: seq<Steps>, n: nat)
 {
   stepSum(xs) == n
 }
 // pure-end
 
-function allEndAtN(ss: set<seq<Steps>>, n: nat): bool
+ghost predicate allEndAtN(ss: set<seq<Steps>>, n: nat)
 {
   forall xs :: 
     xs in ss ==>
@@ -57,13 +58,13 @@ lemma stepBaseTwo()
 // impl-end
 }
 
-function plusOne(x: seq<Steps>): seq<Steps>
+ghost function plusOne(x: seq<Steps>): seq<Steps>
 {
   [One] + x
 }
 // pure-end
 
-function addOne(ss: set<seq<Steps>>): set<seq<Steps>>
+ghost function addOne(ss: set<seq<Steps>>): set<seq<Steps>>
   ensures forall x :: x in ss ==> plusOne(x) in addOne(ss)
   ensures addOne(ss) == set x | x in ss :: plusOne(x)
 {
@@ -175,13 +176,13 @@ lemma endAtNPlus(ss: set<seq<Steps>>, sz: set<seq<Steps>>, sum: nat)
 // impl-end
 }
 
-function plusTwo(x: seq<Steps>): seq<Steps>
+ghost function plusTwo(x: seq<Steps>): seq<Steps>
 {
   [Two] + x
 }
 // pure-end
 
-function addTwo(ss: set<seq<Steps>>): set<seq<Steps>>
+ghost function addTwo(ss: set<seq<Steps>>): set<seq<Steps>>
   ensures forall x :: x in ss ==> plusTwo(x) in addTwo(ss)
   ensures addTwo(ss) == set x | x in ss :: plusTwo(x)
 {

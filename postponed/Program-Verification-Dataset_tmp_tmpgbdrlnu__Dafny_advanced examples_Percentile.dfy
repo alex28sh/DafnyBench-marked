@@ -1,3 +1,4 @@
+
 function SumUpto(A: array<real>, end: int): real
   requires -1 <= end < A.Length
   reads A

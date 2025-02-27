@@ -1,3 +1,4 @@
+
 function reverse<A>(x: seq<A>): seq<A>
 {
   if x == [] then

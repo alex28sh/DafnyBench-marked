@@ -1,3 +1,4 @@
+
 method RemoveElement(nums: array<int>, val: int) returns (newLength: int)
   // pre-conditions-start
   // pre-conditions-end

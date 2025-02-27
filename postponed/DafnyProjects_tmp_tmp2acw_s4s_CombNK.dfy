@@ -1,3 +1,4 @@
+
 function comb(n: nat, k: nat): nat
   requires 0 <= k <= n
 {

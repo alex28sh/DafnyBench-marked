@@ -1,3 +1,4 @@
+
 method {:verify true} FindAllOccurrences(text: string, pattern: string) returns (offsets: set<nat>)
   // pre-conditions-start
   // pre-conditions-end

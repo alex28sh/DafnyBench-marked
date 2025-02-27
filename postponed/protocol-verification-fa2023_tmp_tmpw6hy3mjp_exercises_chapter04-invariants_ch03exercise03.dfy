@@ -1,4 +1,5 @@
-function Init(v: Variables): bool
+
+ghost predicate Init(v: Variables)
 {
   v.WellFormed() &&
   v.server.Unlocked? &&
@@ -8,7 +9,7 @@ function Init(v: Variables): bool
 }
 // pure-end
 
-function Acquire(v: Variables, v': Variables, id: int): bool
+ghost predicate Acquire(v: Variables, v': Variables, id: int)
 {
   v.WellFormed() &&
   v'.WellFormed() &&
@@ -20,7 +21,7 @@ function Acquire(v: Variables, v': Variables, id: int): bool
 }
 // pure-end
 
-function Release(v: Variables, v': Variables, id: int): bool
+ghost predicate Release(v: Variables, v': Variables, id: int)
 {
   v.WellFormed() &&
   v'.WellFormed() &&
@@ -32,7 +33,7 @@ function Release(v: Variables, v': Variables, id: int): bool
 }
 // pure-end
 
-function NextStep(v: Variables, v': Variables, step: Step): bool
+ghost predicate NextStep(v: Variables, v': Variables, step: Step)
 {
   match step
   case AcquireStep(id) =>
@@ -54,21 +55,21 @@ lemma NextStepDeterministicGivenStep(v: Variables, v': Variables, step: Step)
 // impl-end
 }
 
-function Next(v: Variables, v': Variables): bool
+ghost predicate Next(v: Variables, v': Variables)
 {
   exists step :: 
     NextStep(v, v', step)
 }
 // pure-end
 
-function Safety(v: Variables): bool
+ghost predicate Safety(v: Variables)
 {
   forall i, j | 0 <= i < |v.clients| && 0 <= j < |v.clients| && v.clients[i].Acquired? && v.clients[j].Acquired? :: 
     i == j
 }
 // pure-end
 
-function ClientHoldsLock(v: Variables, clientIndex: nat): bool
+ghost predicate ClientHoldsLock(v: Variables, clientIndex: nat)
   requires v.WellFormed()
 {
   true &&
@@ -109,17 +110,17 @@ datatype ServerGrant = Unlocked | Client(id: nat)
 datatype ClientRecord = Released | Acquired
 
 datatype Variables = Variables(clientCount: nat, server: ServerGrant, clients: seq<ClientRecord>) {
-  function ValidIdx(idx: int): bool
+  ghost predicate ValidIdx(idx: int)
   {
     0 <= idx < this.clientCount
   }
-// pure-end
+  // pure-end
 
-  function WellFormed(): bool
+  ghost predicate WellFormed()
   {
     |clients| == this.clientCount
   }
-// pure-end
+  // pure-end
 }
 
 datatype Step = AcquireStep(id: int) | ReleaseStep(id: int)

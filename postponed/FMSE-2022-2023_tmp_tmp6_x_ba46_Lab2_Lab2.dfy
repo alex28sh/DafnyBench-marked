@@ -1,3 +1,4 @@
+
 lemma SIsInjective(x: Nat, y: Nat)
   // pre-conditions-start
   // pre-conditions-end
@@ -114,7 +115,7 @@ lemma {:induction x, y} AddAssociative(x: Nat, y: Nat, z: Nat)
 // impl-end
 }
 
-function LessThan(x: Nat, y: Nat): bool
+predicate LessThan(x: Nat, y: Nat)
   decreases x, y
 {
   (x.Zero? && y.S?) || (x.S? && y.S? && LessThan(x.Pred, y.Pred))

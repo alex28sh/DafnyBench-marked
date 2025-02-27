@@ -1,16 +1,17 @@
+
 function eight(x: nat): nat
 {
   9 * x + 5
 }
 // pure-end
 
-function isOdd(x: nat): bool
+predicate isOdd(x: nat)
 {
   x % 2 == 1
 }
 // pure-end
 
-function isEven(x: nat): bool
+predicate isEven(x: nat)
 {
   x % 2 == 0
 }
@@ -58,7 +59,7 @@ function relationDomain<T>(s: set<(T, T)>): set<T>
 }
 // pure-end
 
-function reflexive<T>(R: set<(T, T)>, S: set<T>): bool
+predicate reflexive<T>(R: set<(T, T)>, S: set<T>)
   requires relationOnASet(R, S)
 {
   forall s :: 
@@ -67,7 +68,7 @@ function reflexive<T>(R: set<(T, T)>, S: set<T>): bool
 }
 // pure-end
 
-function symmetric<T>(R: set<(T, T)>, S: set<T>): bool
+predicate symmetric<T>(R: set<(T, T)>, S: set<T>)
   requires relationOnASet(R, S)
 {
   forall x: T, y: T :: 
@@ -78,7 +79,7 @@ function symmetric<T>(R: set<(T, T)>, S: set<T>): bool
 }
 // pure-end
 
-function transitive<T>(R: set<(T, T)>, S: set<T>): bool
+predicate transitive<T>(R: set<(T, T)>, S: set<T>)
   requires relationOnASet(R, S)
 {
   forall a, b, c :: 
@@ -91,7 +92,7 @@ function transitive<T>(R: set<(T, T)>, S: set<T>): bool
 }
 // pure-end
 
-function equivalenceRelation<T>(R: set<(T, T)>, S: set<T>): bool
+predicate equivalenceRelation<T>(R: set<(T, T)>, S: set<T>)
   requires relationOnASet(R, S)
 {
   reflexive(R, S) &&
@@ -100,7 +101,7 @@ function equivalenceRelation<T>(R: set<(T, T)>, S: set<T>): bool
 }
 // pure-end
 
-function relationOnASet<T>(R: set<(T, T)>, S: set<T>): bool
+predicate relationOnASet<T>(R: set<(T, T)>, S: set<T>)
 {
   forall ts :: 
     ts in R ==>

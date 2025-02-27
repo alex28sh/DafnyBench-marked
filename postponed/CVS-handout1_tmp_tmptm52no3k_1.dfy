@@ -1,3 +1,4 @@
+
 function sum(a: array<int>, i: int, j: int): int
   requires 0 <= i <= j <= a.Length
   reads a
@@ -36,7 +37,7 @@ method query(a: array<int>, i: int, j: int)
 // impl-end
 }
 
-function is_prefix_sum_for(a: array<int>, c: array<int>): bool
+predicate is_prefix_sum_for(a: array<int>, c: array<int>)
   requires a.Length + 1 == c.Length
   requires c[0] == 0
   reads c, a

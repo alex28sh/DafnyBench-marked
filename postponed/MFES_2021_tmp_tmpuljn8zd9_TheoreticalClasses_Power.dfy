@@ -1,3 +1,4 @@
+
 function power(x: real, n: nat): real
   decreases n
 {

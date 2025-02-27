@@ -1,3 +1,4 @@
+
 function sorted(s: seq<int>): bool
 {
   forall k1, k2 :: 
